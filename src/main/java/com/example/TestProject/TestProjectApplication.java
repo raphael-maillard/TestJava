@@ -1,6 +1,5 @@
 package com.example.TestProject;
 
-import com.example.TestProject.entities.Category;
 import com.example.TestProject.entities.Comment;
 import com.example.TestProject.entities.Product;
 import com.example.TestProject.service.CategoryService;
@@ -12,7 +11,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.transaction.Transactional;
-import java.beans.Transient;
 import java.util.Optional;
 
 @SpringBootApplication
@@ -48,10 +46,12 @@ public class TestProjectApplication implements CommandLineRunner {
 		Product productId1 = optProducts.get();
 		System.out.println(productId1.getName());
 		System.out.println("test de récupération de commentaire =>"+ productId1.getComments().get(1).getContent());
-//
-//		Optional<Comment> optComment = commentService.getCommentById(1);
-//		Comment commentId1 = optComment.get();
-//		System.out.println(commentId1.getContent());
+
+		Optional<Comment> optComment = commentService.getCommentById(1);
+		Comment commentId1 = optComment.get();
+		System.out.println(commentId1.getContent());
+		System.out.println("Produit associé au commentaire => "+ commentId1.getProduct().getName());
+
 //
 //		Optional<Category> optCategory = categoryService.getCategoryById(1);
 //		Category categoryId1 = optCategory.get();
